@@ -3,28 +3,28 @@
 // 2. function component
 
 import React from "react";
+import AddUserInfor from "./AddUserInfor";
+import DisplayInfor from "./DisplayInfor";
 class Mycomponent extends React.Component {
   state = {
-    name: "nguyen dang viet",
-    age: 19,
-    address: "quang nam",
+    ListUser: [
+      { id: 1, name: "nguyen dang viet", age: 20 },
+      { id: 2, name: "le ngoc tan", age: 19 },
+      { id: 3, name: "doan xuan song", age: 12 },
+    ],
   };
-  HandleClick(event) {
-    console.log("anh là nguyễn đăng việt đây hahahah");
-    // console.log(event.target);
-    // in ra event khi thao tác với web
-  }
-  HandleMouseOver(event) {
-    console.log(event.target);
-  }
-  //JSX
+  HandleAddnewUser = (userObj) => {
+    console.log("check data from parent", userObj);
+    this.setState({
+      ListUser: [...this.state.ListUser, userObj],
+    });
+  };
   render() {
     return (
       <div>
-        my name is {this.state.name} and i am from {this.state.address}
-        <button onClick={this.HandleClick}>Click me</button>
-        <button onMouseOver={this.HandleMouseOver}>Hover me</button>
-        {/* không cần phải HandleClick() khi gọi hàm */}
+        <AddUserInfor HandleAddnewUser={this.HandleAddnewUser} />
+        {/* cái ni đáng lưu ý nè cu */}
+        <DisplayInfor ListUser={this.state.ListUser} />
       </div>
     );
     //Javascipt được định nghĩa bằng cặp dấu {}
