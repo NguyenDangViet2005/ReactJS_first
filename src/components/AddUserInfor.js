@@ -1,62 +1,95 @@
-import React from "react";
-class AddUserInfor extends React.Component {
-  state = {
-    name: "",
-    age: 19,
-    address: "",
-  };
+import React, { useState } from "react";
+// class AddUserInfor extends React.Component {
+//   state = {
+//     name: "",
+//     age: 19,
+//     address: "",
+//   };
 
-  // HandleClick(event) {
-  //   console.log("anh là nguyễn đăng việt đây hahahah");
-  //   console.log("my name is ", this.state.name);
-  //   // console.log(event.target);
-  //   // in ra event khi thao tác với web
-  //   this.setState({
-  //     name: "NDV",
-  //   });
-  // }
-  // HandleMouseOver(event) {
-  //   console.log(event.target);
-  // }
+//   // HandleClick(event) {
+//   //   console.log("anh là nguyễn đăng việt đây hahahah");
+//   //   console.log("my name is ", name);
+//   //   // console.log(event.target);
+//   //   // in ra event khi thao tác với web
+//   //   setState({
+//   //     name: "NDV",
+//   //   });
+//   // }
+//   // HandleMouseOver(event) {
+//   //   console.log(event.target);
+//   // }
+//   //JSX
+//   HandleONchangeInput = (event) => {
+//     setState({
+//       name: event.target.value,
+//     });
+//   };
+//   HandleONchangeAge = (event) => {
+//     setState({
+//       age: event.target.value,
+//     });
+//   };
+
+//   HandleONsubmit = (event) => {
+//     event.preventDefault();
+//     props.HandleAddnewUser({
+//       id: Math.floor(Math.random() * 100 + 1) + "-random", //này là để nếu giống id đã có thì nó tạo cái id khác
+//       name: name,
+//       age: age,
+//     });
+//   };
+//   render() {
+//     return (
+//       <div>
+//         my name is {name} and i am {age}
+//         <form onSubmit={(event) => HandleONsubmit(event)}>
+//           <label>Your name:</label>
+//           <input
+//             type="text"
+//             onChange={(event) => HandleONchangeInput(event)}
+//           />
+//           <label>Your age:</label>
+//           <input
+//             type="text"
+//             onChange={(event) => HandleONchangeAge(event)}
+//           />
+//           <button>Submit</button>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
+const AddUserInfor = (props) => {
+  const [name, setname] = useState("");
+  const [address, setaddress] = useState("");
+  const [age, setage] = useState("");
   //JSX
-  HandleONchangeInput = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
+  const HandleONchangeInput = (event) => {
+    setname(event.target.value);
   };
-  HandleONchangeAge = (event) => {
-    this.setState({
-      age: event.target.value,
-    });
+  const HandleONchangeAge = (event) => {
+    setage(event.target.value);
   };
 
-  HandleONsubmit = (event) => {
+  const HandleONsubmit = (event) => {
     event.preventDefault();
-    this.props.HandleAddnewUser({
+    props.HandleAddnewUser({
       id: Math.floor(Math.random() * 100 + 1) + "-random", //này là để nếu giống id đã có thì nó tạo cái id khác
-      name: this.state.name,
-      age: this.state.age,
+      name: name,
+      age: age,
     });
   };
-  render() {
-    return (
-      <div>
-        my name is {this.state.name} and i am from {this.state.address}
-        <form onSubmit={(event) => this.HandleONsubmit(event)}>
-          <label>Your name:</label>
-          <input
-            type="text"
-            onChange={(event) => this.HandleONchangeInput(event)}
-          />
-          <label>Your age:</label>
-          <input
-            type="text"
-            onChange={(event) => this.HandleONchangeAge(event)}
-          />
-          <button>Submit</button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <>
+      my name is {name} and i am {age}
+      <form onSubmit={(event) => HandleONsubmit(event)}>
+        <label>Your name:</label>
+        <input type="text" onChange={(event) => HandleONchangeInput(event)} />
+        <label>Your age:</label>
+        <input type="text" onChange={(event) => HandleONchangeAge(event)} />
+        <button>Submit</button>
+      </form>
+    </>
+  );
+};
 export default AddUserInfor;
